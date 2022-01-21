@@ -2,7 +2,7 @@ const User = require('../models/User');
 
 class UserService {
 
-  saveUser(user) {
+  createUser(user) {
     const newUser = new User(user);
     return newUser.save();
   }
