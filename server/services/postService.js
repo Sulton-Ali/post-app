@@ -1,22 +1,19 @@
-const Post = require('../models/Post');
-const User = require('../models/User');
+const Post = require("../models/Post");
+const User = require("../models/User");
 
 class PostService {
-
-  async savePost(post) {
-    const author = await User.findById(post.authorId);
-    if (author) {
+  async createPost(post, userId) {
+    const user = await User.findById(userId);
+    if (user) {
       const newPost = new Post({
         ...post,
-        authorFullName: `${author.name} ${author.surname}`,
-        createdAt: Date.now()
+        authorId: user._id,
+        authorName: user.username,
+        createdAt: Date.now(),
       });
-      console.log(post)
-      author.posts = [...author.posts, newPost._id];
-      await author.save();
       return newPost.save();
     } else {
-      throw new Error('Author with id ' + post.authorId + ' not found');
+      throw new Error("Author with id " + post.authorId + " not found");
     }
   }
 
@@ -28,17 +25,24 @@ class PostService {
     return Post.findOne({ _id: id });
   }
 
-  updatePost(id, post) {
-    return Post.findOneAndUpdate({_id: id}, {...post});
+  async updatePost(id, post, userId) {
+    const postOld = await Post.findById(id);
+    if (postOld.authorId !== userId) {
+      throw Error("User is not author of post");
+    }
+    return Post.findByIdAndUpdate(
+      { _id: id },
+      {
+        ...post,
+      }
+    );
   }
 
   deletePostById(id) {
     return Post.findOneAndDelete({ _id: id });
   }
 
-  getPostsByAuthorId(id) {
-
-  }
+  getPostsByAuthorId(id) {}
 }
 
 module.exports = new PostService();
