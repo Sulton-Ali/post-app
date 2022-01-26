@@ -25,7 +25,7 @@ module.exports = function (roles) {
             next();
         } catch (e) {
             console.log(e);
-            return  res.status(403).json({message: "Пользователь не авторизован"});
+            return  res.status(401).json({message: e.message});
         }
     }
 }

@@ -1,6 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
+const cors = require("cors");
 
 const userRouter = require("./routers/userRouter");
 const postRouter = require("./routers/postRouter");
@@ -9,6 +10,7 @@ const authRouter = require("./routers/authRouter");
 const PORT = process.env.PORT || 5000;
 const app = express();
 
+app.use(cors());
 app.use(express.json());
 
 app.use("/users", userRouter);

@@ -28,7 +28,7 @@ class PostService {
   async updatePost(id, post, userId) {
     const postOld = await Post.findById(id);
     if (postOld.authorId !== userId) {
-      throw Error("User is not author of post");
+      throw Error("Вы не являетесь создателем поста");
     }
     return Post.findByIdAndUpdate(
       { _id: id },

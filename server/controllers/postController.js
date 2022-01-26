@@ -58,8 +58,13 @@ class PostController {
   async deletePost(req, res) {
     try {
       const postId = req.params.id;
-      const post = await postService.deletePostById(postId);
-      res.status(200).json(post);
+      const user = req.user;
+      const post = await postService.getPostById(postId);
+      if (post.authorId !== user.id) {
+        return res.status(403).json({message: "Вы не являетесь создателем поста"})
+      }
+      const deletedPost = await postService.deletePostById(postId);
+      return res.status(200).json(deletedPost);
     } catch (e) {
       console.log(e);
       res.status(500).json(e);
