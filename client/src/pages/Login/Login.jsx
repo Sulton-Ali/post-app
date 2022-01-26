@@ -3,6 +3,7 @@ import {Button, Form} from 'react-bootstrap';
 import {useNavigate} from "react-router-dom";
 import loginService from "../../services/httpServices/loginService";
 import tokenService from "../../services/tokenService";
+import logo from '../../assets/images/hijaab-uz-logo.jpg';
 
 function Login() {
   const [username, setUsername] = useState('');
@@ -24,8 +25,11 @@ function Login() {
 
   return (
     <div className="container">
-      <div className="login min-vh-100 d-flex justify-content-center align-items-center">
+      <div className="login d-flex justify-content-center align-items-center">
         <Form className="w-50 p-5 bg-success text-white rounded-3">
+          <div className="d-flex justify-content-center">
+            <img src={logo} alt="site logo" width="100" height="100" className="rounded-circle"/>
+          </div>
           <Form.Group className="mb-3" controlId="username">
             <Form.Label>Логин</Form.Label>
             <Form.Control

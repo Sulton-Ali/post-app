@@ -8,6 +8,8 @@ import Main from "../Main/Main";
 import Posts from "../../pages/Posts/Posts";
 import tokenService from "../../services/tokenService";
 import eventBus from "../../utils/eventBus";
+import {Outlet} from "react-router";
+import PostAdd from "../../pages/PostAdd/PostAdd";
 
 function App() {
 
@@ -32,10 +34,13 @@ function App() {
   return (
     <div className="app">
       <Routes>
-        <Route path="login" element={<Login/>}/>
         <Route path="/" element={<Main />}>
           <Route index  element={<Home />}/>
-          <Route path="posts" element={<Posts />}/>
+          <Route path="login" element={<Login/>}/>
+          <Route path="posts" element={<Outlet />}>
+            <Route index element={<Posts />} />
+            <Route path="add" element={<PostAdd />} />
+          </Route>
         </Route>
         <Route path="*" element={<div>
           <strong>404: </strong>
