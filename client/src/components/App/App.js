@@ -1,18 +1,17 @@
-import React, {useEffect} from 'react';
-import {Routes, Route, Link, useNavigate} from 'react-router-dom';
+import React, { useEffect } from "react";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import jwtDecode from "jwt-decode";
-import './App.scss';
+import "./App.scss";
 import Login from "../../pages/Login/Login";
 import Home from "../../pages/Home/Home";
 import Main from "../Main/Main";
 import Posts from "../../pages/Posts/Posts";
 import tokenService from "../../services/tokenService";
 import eventBus from "../../utils/eventBus";
-import {Outlet} from "react-router";
+import { Outlet } from "react-router";
 import PostAdd from "../../pages/PostAdd/PostAdd";
 
 function App() {
-
   const navigation = useNavigate();
   let payload = null;
   const token = tokenService.getToken();
@@ -23,29 +22,34 @@ function App() {
   useEffect(() => {
     eventBus.on("logout", () => {
       tokenService.removeToken();
-      navigation('login');
+      navigation("login");
     });
 
     return () => {
       eventBus.remove("logout");
     };
-  }, [])
+  }, []);
 
   return (
     <div className="app">
       <Routes>
         <Route path="/" element={<Main />}>
-          <Route index  element={<Home />}/>
-          <Route path="login" element={<Login/>}/>
+          <Route index element={<Home />} />
+          <Route path="login" element={<Login />} />
           <Route path="posts" element={<Outlet />}>
             <Route index element={<Posts />} />
             <Route path="add" element={<PostAdd />} />
           </Route>
         </Route>
-        <Route path="*" element={<div>
-          <strong>404: </strong>
-          Page not found
-        </div>} />
+        <Route
+          path="*"
+          element={
+            <div>
+              <strong>404: </strong>
+              Page not found
+            </div>
+          }
+        />
       </Routes>
     </div>
   );

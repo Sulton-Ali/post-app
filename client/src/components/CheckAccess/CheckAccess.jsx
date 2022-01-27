@@ -1,4 +1,3 @@
-import React from 'react';
 import getTokenBody from "../../utils/decodeToken";
 
 function CheckAccess({ roles, children }) {
