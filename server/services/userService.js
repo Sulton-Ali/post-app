@@ -9,6 +9,10 @@ class UserService {
   getUsers() {
     return User.find();
   }
+
+  getUserById(id) {
+    return User.findById(id);
+  }
 }
 
 module.exports = new UserService();

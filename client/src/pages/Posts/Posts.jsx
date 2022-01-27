@@ -20,10 +20,10 @@ function Posts() {
     <div className="posts rounded-3 p-3">
       <div className="w-100 bg-white shadow rounded-3 p-3 mb-2 d-flex justify-content-between align-items-center">
         <h3 className="fs-3 fw-bold text-black-50">
-          Посты
+          Публикации
         </h3>
         <div>
-          <CheckAccess role={ROLES.ADMIN}>
+          <CheckAccess roles={[ROLES.ADMIN, ROLES.USER]}>
             <Link to="/posts/add"><Button variant="primary">Добавить пост</Button></Link>
           </CheckAccess>
         </div>
