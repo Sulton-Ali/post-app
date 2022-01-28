@@ -7,7 +7,7 @@ function Main() {
   return (
     <div className="main min-vh-100 d-flex flex-column">
       <NavigationBar />
-      <div className="container flex-grow-1 py-4 px-2">
+      <div className="container flex-grow-1 py-4 px-2 d-flex justify-content-center align-items-center">
         <Outlet />
       </div>
       <Footer />

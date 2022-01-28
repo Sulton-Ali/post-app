@@ -18,8 +18,8 @@ function PostAdd() {
   };
 
   return (
-    <div>
-      <form className="w-75 mx-auto bg-white p-5 mt-5 rounded-3">
+    <div className="w-100" style={{ maxWidth: '48em' }}>
+      <form className="bg-white py-4 px-3 mt-5 rounded-3">
         <h4 className="fs-4 fw-bold text-center">Yangi post yaratish</h4>
         <div className="mb-3">
           <label htmlFor="title" className="form-label fw-bold">
@@ -81,7 +81,7 @@ function PostAdd() {
             id="content"
             value={content}
             onChange={(e) => setContent(e.target.value)}
-          ></textarea>
+          />
         </div>
         <button type="button" className="btn btn-primary" onClick={create}>
           Yaratish

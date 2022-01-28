@@ -10,6 +10,7 @@ import tokenService from "../../services/tokenService";
 import eventBus from "../../utils/eventBus";
 import { Outlet } from "react-router";
 import PostAdd from "../../pages/PostAdd/PostAdd";
+import PostDetails from "../../pages/PostDetails/PostDetails";
 
 function App() {
   const navigation = useNavigate();
@@ -38,6 +39,7 @@ function App() {
           <Route path="login" element={<Login />} />
           <Route path="posts" element={<Outlet />}>
             <Route index element={<Posts />} />
+            <Route path=":id" element={<PostDetails />} />
             <Route path="add" element={<PostAdd />} />
           </Route>
         </Route>
