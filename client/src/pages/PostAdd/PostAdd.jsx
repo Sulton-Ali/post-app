@@ -19,7 +19,7 @@ function PostAdd() {
 
   return (
     <div>
-      <form className="w-lg-75 mx-auto bg-white p-5 mt-5 rounded-3">
+      <form className="w-75 mx-auto bg-white p-5 mt-5 rounded-3">
         <h4 className="fs-4 fw-bold text-center">Yangi post yaratish</h4>
         <div className="mb-3">
           <label htmlFor="title" className="form-label fw-bold">

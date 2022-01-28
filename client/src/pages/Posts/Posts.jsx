@@ -29,7 +29,7 @@ function Posts() {
           </CheckAccess>
         </div>
       </div>
-      <div className="d-flex flex-wrap justify-content-around rounded-3 bg-white shadow-lg p-5">
+      <div className="row flex-wrap justify-content-center rounded-3 bg-white shadow-lg p-5 m-0 g-4">
         {posts.map((post, index) => (
           <Post key={index} post={post} />
         ))}

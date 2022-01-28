@@ -26,8 +26,8 @@ function Login() {
 
   return (
     <div className="container">
-      <div className="login d-flex justify-content-center align-items-center">
-        <Form className="w-lg-50 p-5 bg-success text-white rounded-3">
+      <div className="login row justify-content-center align-items-center">
+        <Form className="col-lg-6 p-5 bg-success text-white rounded-3">
           <div className="d-flex justify-content-center">
             <img
               src={logo}

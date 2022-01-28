@@ -40,7 +40,7 @@ function NavigationBar() {
           </Nav.Item>
         </Nav>
 
-        <Nav className="ms-3">
+        <Nav className="ms-32">
           {(payload?.roles.includes(ROLES.ADMIN) || payload?.roles.includes(ROLES.USER))
             ? (
               <Nav.Item>
