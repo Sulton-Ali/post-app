@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import {useParams} from "react-router-dom";
-import {Card} from 'react-bootstrap';
 import postService from "../../services/httpServices/postService";
 
 function PostDetails() {
@@ -28,9 +27,7 @@ function PostDetails() {
         </div>
       </div>
       <div>
-        <p className="lh-lg">
-          {post.content}
-        </p>
+          <div className="lh-lg" dangerouslySetInnerHTML={{__html: post.content}}/>
       </div>
     </section>
   );

@@ -1,26 +1,47 @@
 import React, { useState } from "react";
+import postService from "../../services/httpServices/postService";
+import {useNavigate} from "react-router-dom";
 
-function PostAdd() {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [category, setCategory] = useState("");
-  const [imgUrl, setImgUrl] = useState("");
-  const [content, setContent] = useState("");
+function PostAdd({ post, onPostUpdated }) {
+  const [title, setTitle] = useState(post ? post.title : "");
+  const [description, setDescription] = useState(post ? post.description : "");
+  const [category, setCategory] = useState(post ? post.category : "");
+  const [imgUrl, setImgUrl] = useState(post ? post.imgUrl : "");
+  const [content, setContent] = useState(post ? post.content : "");
+
+  const navigate = useNavigate();
 
   const create = () => {
-    console.log({
+    postService.createPost({
       title,
       description,
       category,
       imgUrl,
       content,
-    });
+    })
+        .then(() => navigate('/posts'))
+        .catch(e => console.log(e))
   };
+
+  const updatePost = () => {
+    postService.updatePost(post._id, {
+      title,
+      description,
+      category,
+      imgUrl,
+      content,
+    })
+        .then(() => {
+          console.log("Post updated");
+          onPostUpdated();
+        })
+        .catch(e => console.log(e.message))
+  }
 
   return (
     <div className="w-100" style={{ maxWidth: '48em' }}>
-      <form className="bg-white py-4 px-3 mt-5 rounded-3">
-        <h4 className="fs-4 fw-bold text-center">Yangi post yaratish</h4>
+      <form className="bg-white py-4 px-3 rounded-3">
+        <h4 className="fs-4 fw-bold text-center">Yangi post yaratish yoki tahrirlash</h4>
         <div className="mb-3">
           <label htmlFor="title" className="form-label fw-bold">
             Sarlavha
@@ -75,7 +96,7 @@ function PostAdd() {
             Mazmuni
           </label>
           <textarea
-            rows="3"
+            rows="6"
             type="text"
             className="form-control"
             id="content"
@@ -83,8 +104,8 @@ function PostAdd() {
             onChange={(e) => setContent(e.target.value)}
           />
         </div>
-        <button type="button" className="btn btn-primary" onClick={create}>
-          Yaratish
+        <button type="button" className="btn btn-primary" onClick={post ? updatePost : create}>
+          {post ? "Tahrirlash" : "Yaratish"}
         </button>
       </form>
     </div>

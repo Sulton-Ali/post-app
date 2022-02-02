@@ -36,7 +36,7 @@ function Home() {
           <div className="mt-2 d-flex justify-content-center">
             <a
               href="https://t.me/hijaab_uz"
-              className="btn btn-success"
+              className="btn btn-success d-flex align-items-center"
               target="_blank"
               rel="noreferrer"
             >
@@ -51,7 +51,7 @@ function Home() {
             </a>
             <a
               href="https://www.instagram.com/hijaab_uz"
-              className="btn btn-success ms-2"
+              className="btn btn-success ms-2 d-flex align-items-center"
               target="_blank"
               rel="noreferrer"
             >
