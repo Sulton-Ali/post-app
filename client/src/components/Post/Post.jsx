@@ -15,7 +15,7 @@ function Post(props) {
     return (
         <div className="post" style={{width: "20rem"}}>
             <Card className="shadow h-100">
-                <Card.Img variant="top" src={post.imgUrl}/>
+                <Card.Img variant="top" src={post.imgUrl} />
                 <Card.Body>
                     <Card.Title>{post.title}</Card.Title>
                     <Card.Text>{post.description}</Card.Text>

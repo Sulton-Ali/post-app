@@ -32,10 +32,11 @@ function PostAdd({ post, onPostUpdated }) {
       content,
     })
         .then(() => {
-          console.log("Post updated");
-          onPostUpdated();
+          onPostUpdated("Post muvaffaqiyatli tahrirlandi");
         })
-        .catch(e => console.log(e.message))
+        .catch(e => {
+          onPostUpdated("Postni tahrirlashda xatolik " + e.message );
+        })
   }
 
   return (
